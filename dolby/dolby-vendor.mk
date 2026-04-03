@@ -7,7 +7,6 @@ PRODUCT_COPY_FILES += \
     hardware/motorola/dolby/proprietary/vendor/etc/media_codecs_dolby_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_dolby_audio.xml
 
 PRODUCT_PACKAGES += \
-    DolbyManager \
     libdapparamstorage \
     libdeccfg \
     libdlbdsservice \
@@ -16,6 +15,7 @@ PRODUCT_PACKAGES += \
     libswdap \
     libswgamedap \
     libswvqe \
+    LunarisDolby \
     vendor.dolby.hardware.dms@2.0 \
     vendor.dolby.hardware.dms@2.0-impl \
     vendor.dolby.hardware.dms@2.0-service
