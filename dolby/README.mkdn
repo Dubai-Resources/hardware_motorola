@@ -1,28 +1,69 @@
-Motorola Dolby Atmos
-====================
+Sony Dolby
+==============
 
 Getting Started
 ---------------
-Clone the repository:
-
-Patches required to the device tree side :
-
-```bash
-https://github.com/sdm660-motorola/android_device_motorola_beckham/commit/0ddf5f7426aa62858381d97a472867da31b0c74a
-```
-
-```bash
-https://github.com/sdm660-motorola/device_motorola_msm8998-common/commit/8f107da3add9fa8f585e1a553543f858801cf8ee
-```
-
-To support the Dolby media codecs, include this line on your device tree :
+For dolby media codecs to work add this line in your media codecs config (should be in vendor partition) :-
 
 ```bash
 <Include href="media_codecs_dolby_audio.xml" />
 ```
 
-Inherit the dolby configs by :
+To build, add the dolby effects in your device's audio effects config then inherit the dolby config by adding this in your device's makefile :-
 
 ```bash
-$(call inherit-product, hardware/motorola/dolby/setup.mk)
+$(call inherit-product, hardware/motorola/dolby/dolby.mk)
 ```
+
+Now, moving hidl definitions in manifest to device trees is completely absurd so stop overriding manifest in your device trees an example for such would be :-
+
+Changing these in BoardConfig makefile of your device tree:-
+
+```bash
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE :=
+```
+And
+
+```bash
+DEVICE_MANIFEST_FILE :=
+```
+
+To:-
+
+```bash
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE +=
+```
+And
+
+```bash
+DEVICE_MANIFEST_FILE +=
+```
+
+The only change done above is changing := symbol to += so that manifest can't be overriden from device tree in BoardConfig makefile.
+
+At the end an example commit to properly implement it in your device tree could be :-
+
+**1)** [**Enable Dolby Atmos**](https://github.com/Spanish-or-Vanish/android_device_xiaomi_sm8350-common/commit/e2333c94444b2646810cca39926f2df6bb95443c)
+**or**
+[**Enable Dolby Atmos**](https://github.com/swiitchOFF-miatoll/device_xiaomi_sm6250-common/commit/cfb88813114c6b0b16860ca29c04319418fbec93)
+
+**2)** [**Enable Dolby Spatial Audio**](https://github.com/Spanish-or-Vanish/android_device_xiaomi_sm8350-common/commit/fb6e082743d651b4742232817142aed161758953) 
+**with** **>>** [**this is must**](https://github.com/Spanish-or-Vanish/android_device_xiaomi_sm8350-common/commit/f43cac4b68a208fda517e8faf914234158da75fd) **<<**
+
+**or**
+[**Enable Dolby Spatial Audio**](https://github.com/swiitchOFF-miatoll/device_xiaomi_sm6250-common/commit/b976b1aed2bd4b744f6003f9d36da2f31420b8a2)
+
+**3)** [**Enable Dolby Vision**](https://github.com/Spanish-or-Vanish/android_device_xiaomi_sm8350-common/commit/97e6c84e3e2390c7fa8acecc3cdedd70b5aed07d)
+**or**
+[**Enable Dolby Vision**](https://github.com/swiitchOFF-miatoll/device_xiaomi_sm6250-common/commit/361a3c11663257999e21cb02eee9530bfec16f33)
+**or**
+[**Disable Dolby Vision**](https://github.com/Spanish-or-Vanish/android_device_xiaomi_sm8350-common/commit/41411ab3e6caabe8a304b03d6badcd8bf2211adb)
+
+# Credits:
+ * [**swiitchOFF**](https://github.com/swiitchOFF)
+ * [**HELLBOY017**](https://github.com/HELLBOY017)
+ * [**adithya2306**](https://github.com/adithya2306)
+ * [**johnmart19**](https://github.com/johnmart19)
+ * [**userariii**](https://github.com/userariii)
+ * [**saku-bruh**](https://github.com/saku-bruh)
+ * [**ahnet-69 · he/him**](https://github.com/ahnet-69)
