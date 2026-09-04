@@ -112,6 +112,19 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     DSPVolumeSynchronizer
 
+# OnePlus DaxUI and daxService
+PRODUCT_PACKAGES += \
+    daxService \
+    DaxUI
+
+# Dolby UI permissions
+PRODUCT_COPY_FILES += \
+    $(DOLBY_PATH)/proprietary/system_ext/etc/permissions/privapp-com.dolby.daxappui.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-com.dolby.daxappui.xml \
+    $(DOLBY_PATH)/proprietary/system_ext/etc/permissions/privapp-com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-com.dolby.daxservice.xml \
+    $(DOLBY_PATH)/proprietary/system_ext/etc/sysconfig/config-com.dolby.daxappui.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/config-com.dolby.daxappui.xml \
+    $(DOLBY_PATH)/proprietary/system_ext/etc/sysconfig/config-com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/config-com.dolby.daxservice.xml \
+    $(DOLBY_PATH)/proprietary/system_ext/etc/sysconfig/hiddenapi-com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/hiddenapi-com.dolby.daxservice.xml
+
 # Dolby Proprietary blobs
 PRODUCT_COPY_FILES += \
     $(DOLBY_PATH)/proprietary/vendor/etc/init/vendor.dolby.hardware.dms@2.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.dolby.hardware.dms@2.0-service.rc \
@@ -120,9 +133,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libdapparamstorage-dolby \
     libdapparamstorage \
-    libdlbpreg \
     libstagefright_foundation-dolby \
-    libdlbvol \
     libswdap \
     libswgamedap \
     libswvqe \
@@ -135,10 +146,15 @@ PRODUCT_PACKAGES += \
     libdeccfg \
     libdlbdsservice \
     liboem_specific \
-    LunarisDolby \
     vendor.dolby.hardware.dms@2.0-impl \
     vendor.dolby.hardware.dms@2.0-service \
     vendor.dolby.media.c2@1.0-service
+
+PRODUCT_PACKAGES += \
+    libdlbpreg \
+    libstagefright_foundation-atmos \
+    libdlbvol \
+    vendor.dolby.hardware.dms@2.0-atmos.so
 
 # Dolby vision Proprietary blobs
 PRODUCT_COPY_FILES += \
